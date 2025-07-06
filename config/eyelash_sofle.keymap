@@ -15,6 +15,7 @@
 #define LOWER 1
 #define RAISE 2
 #define FN 3
+#define CONFIG 4
 
 #define HYP LS(LC(LA(LGUI)))
 #define MEH LC(LA(LGUI))
@@ -88,11 +89,11 @@
 
         default_layer {
             bindings = <
-&gresc      &kp N1     &kp N2        &kp N3        &kp N4    &kp N5       &mmv MOVE_UP     &kp N6      &kp N7     &kp N8     &kp N9   &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q      &kp W         &kp E         &kp R     &kp T        &mmv MOVE_DOWN   &kp Y       &kp U      &kp I      &kp O    &kp P       &kp BSLH
-&kp LCTRL   &kp A      &kp S         &kp D         &kp F     &kp G        &mmv MOVE_LEFT   &kp H       &kp J      &kp K      &kp L    &kp SEMI    &kp SQT
-&kp LSHFT   &kp Z      &kp X         &kp C         &kp V     &kp B        &mmv MOVE_RIGHT  &kp N       &kp M      &kp COMMA  &kp DOT  &kp FSLH    &rshift_caps
-&kp C_MUTE  &kp LCTRL  &kp LALT      &kp LGUI      &mo RAISE &kp SPACE    &mkp LCLK        &mt MEH RET &mo LOWER  &kp RGUI   &kp RALT &kp DELETE
+&gresc      &kp N1     &kp N2        &kp N3        &kp N4    &kp N5       &mmv MOVE_UP     &kp N6       &kp N7     &kp N8     &kp N9      &kp N0      &kp BACKSPACE
+&kp TAB     &kp Q      &kp W         &kp E         &kp R     &kp T        &mmv MOVE_DOWN   &kp Y        &kp U      &kp I      &kp O       &kp P       &kp BSLH
+&kp LCTRL   &kp A      &kp S         &kp D         &kp F     &kp G        &mmv MOVE_LEFT   &kp H        &kp J      &kp K      &kp L       &kp SEMI    &kp SQT
+&kp LSHFT   &kp Z      &kp X         &kp C         &kp V     &kp B        &mmv MOVE_RIGHT  &kp N        &kp M      &kp COMMA  &kp DOT     &kp FSLH    &rshift_caps
+&kp C_MUTE  &kp LCTRL  &kp LALT      &kp LGUI      &mo RAISE &kp SPACE    &mkp LCLK        &mt MEH RET  &mo LOWER  &none      &mo CONFIG  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -101,11 +102,11 @@
 
         lower_layer {
             bindings = <
-&trans      &trans           &trans          &trans           &trans           &trans             &trans  &trans           &trans           &trans      &trans     &trans            &trans
-&trans      &kp LT           &kp LBKT        &kp LBRC         &kp LPAR         &kp TILDE          &trans  &kp GRAVE        &kp RPAR         &kp RBRC    &kp RBKT   &kp GT            &kp PIPE
-&trans      &kp MINUS        &kp EQUAL       &kp PLUS         &kp STAR         &kp FSLH           &trans  &kp POUND        &sk RGUI         &sk RALT    &sk RCTRL  &sk RSHFT         &kp DQT
-&trans      &kp EXCL         &kp AT          &kp POUND        &kp DLLR         &kp PRCNT          &trans  &kp CARET        &kp UNDER        &kp AMPS    &kp PIPE   &kp QMARK         &trans
-&trans      &trans           &trans          &trans           &trans           &trans             &trans  &trans           &trans           &trans      &trans     &trans
+&trans   &trans     &trans     &trans     &trans    &trans     &trans  &trans     &trans     &trans    &trans     &trans     &trans
+&trans   &kp LT     &kp LBKT   &kp LBRC   &kp LPAR  &kp TILDE  &trans  &kp GRAVE  &kp RPAR   &kp RBRC  &kp RBKT   &kp GT     &kp PIPE
+&trans   &kp MINUS  &kp EQUAL  &kp PLUS   &kp STAR  &kp FSLH   &trans  &kp POUND  &sk RGUI   &sk RALT  &sk RCTRL  &sk RSHFT  &kp DQT
+&trans   &kp EXCL   &kp AT     &kp POUND  &kp DLLR  &kp PRCNT  &trans  &kp CARET  &kp UNDER  &kp AMPS  &kp PIPE   &kp QMARK  &trans
+&trans   &trans     &trans     &trans     &trans    &trans     &trans  &trans     &trans     &trans    &trans     &trans
             >;
 
             display-name = "SYM";
@@ -114,14 +115,14 @@
 
         raise_layer {
             bindings = <
-&bt BT_CLR     &bt BT_SEL 0     &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4    &trans     &none            &none            &none            &none            &none        &kp DEL
-&studio_unlock &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &none           &trans     &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none        &none
-&none          &sk LSHFT        &sk LCTRL       &sk LALT         &sk LGUI         &none           &trans     &kp LARW         &kp DARW         &kp UARW         &kp RARW         &none        &none
-&none          &sys_reset       &none           &kp C_PREV       &sk C_NEXT       &kp C_PP        &trans     &none            &none            &sys_reset       &soft_off        &bootloader  &none 
-&trans         &trans           &trans          &trans           &trans           &trans          &mkp RCLK  &none            &none            &none            &none            &none 
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans     &none     &none     &none     &none     &none   &kp DEL
+&none       &none         &none         &none         &none         &none         &trans     &none     &kp END   &kp HOME  &none     &none   &none
+&none       &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI      &none         &trans     &kp LARW  &kp DARW  &kp UARW  &kp RARW  &none   &none
+&none       &none         &none         &kp C_PREV    &sk C_NEXT    &kp C_PP      &trans     &none     &kp PGDN  &kp PGUP  &none     &none   &none 
+&trans      &trans        &trans        &trans        &trans        &trans        &mkp RCLK  &trans    &trans    &trans    &trans    &trans 
             >;
-            display-name = "UTIL";
-            sensor-bindings = <&keyboard_brightness_encoder>;
+            display-name = "NAV";
+            sensor-bindings = <&scroll_encoder>;
         };
 
         fn_layer {
@@ -134,6 +135,18 @@
             >;
             display-name = "FN";
             sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN>;
+        };
+
+        config_layer {
+            bindings = <
+&studio_unlock  &none            &none            &none            &none            &none    &trans  &none  &none  &none       &none  &none      &none
+&none           &rgb_ug RGB_OFF  &rgb_ug RGB_ON   &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &none    &trans  &none  &none  &none       &none  &none      &none
+&none           &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none    &trans  &none  &none  &none       &none  &none      &none 
+&none           &sys_reset       &none            &bootloader      &none            &none    &trans  &none  &none  &bootloader &soft_off &sys_reset &none 
+&none           &none            &none            &none            &none            &none    &trans  &none  &none  &none       &none  &none 
+            >;
+            display-name = "CONFIG";
+            sensor-bindings = <&keyboard_brightness_encoder>;
         };
     };
 };
