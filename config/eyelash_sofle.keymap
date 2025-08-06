@@ -117,7 +117,7 @@
         &none   &kp F1     &kp F2     &kp F3      &kp F4      &kp F5      &trans       &kp F6    &kp F7    &kp F8    &kp F9      &kp F10  &none 
         &trans  &kp F11    &kp F12    &none       &none       &none       &trans       &none     &kp END   &kp HOME  &kp INSERT  &none    &none
         &trans  &sk LSHFT  &sk LCTRL  &sk LALT    &sk LGUI    &none       &trans       &kp LARW  &kp DARW  &kp UARW  &kp RARW    &none    &none
-        &trans  &none      &none      &kp C_PREV  &sk C_NEXT  &kp C_PP    &trans       &none     &kp PGDN  &kp PGUP  &kp DELETE  &none    &none 
+        &trans  &none      &none      &kp C_PREV  &kp C_NEXT  &kp C_PP    &trans       &none     &kp PGDN  &kp PGUP  &kp DELETE  &none    &none 
 &trans          &trans     &trans     &trans      &trans      &trans      &mkp RCLK    &trans    &trans    &trans    &trans      &trans  
             >;
             display-name = "NAV/FN";
