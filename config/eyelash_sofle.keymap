@@ -93,7 +93,7 @@
             &kp TAB     &kp Q      &kp W     &kp E     &kp R     &kp T         &mmv MOVE_DOWN     &kp Y        &kp U      &kp I      &kp O       &kp P       &kp BSLH
             &kp LCTRL   &kp A      &kp S     &kp D     &kp F     &kp G         &mmv MOVE_LEFT     &kp H        &kp J      &kp K      &kp L       &kp SEMI    &kp SQT
             &kp LSHFT   &kp Z      &kp X     &kp C     &kp V     &kp B         &mmv MOVE_RIGHT    &kp N        &kp M      &kp COMMA  &kp DOT     &kp FSLH    &rshift_caps
-&kp C_MUTE              &kp LCTRL  &kp LALT  &kp LGUI  &mo RAISE &kp SPACE     &mkp LCLK          &mt MEH RET  &mo LOWER  &none      &mo CONFIG  &kp DELETE
+&kp C_MUTE              &kp LCTRL  &kp LALT  &kp LGUI  &mo RAISE &kp SPACE     &mkp LCLK          &mt MEH RET  &mo LOWER  &kp RCTRL  &mo CONFIG  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -115,7 +115,7 @@
 
         raise_layer {
             bindings = <
-        &trans  &trans     &trans     &trans      &trans      &trans      &trans       &none     &none     &none     &none     &none    &kp DEL
+        &trans  &trans     &trans     &trans      &trans      &trans      &trans       &trans    &trans    &trans    &trans    &trans   &kp DEL
         &trans  &none      &none      &none       &none       &none       &trans       &none     &kp END   &kp HOME  &none     &none    &none
         &trans  &sk LSHFT  &sk LCTRL  &sk LALT    &sk LGUI    &none       &trans       &kp LARW  &kp DARW  &kp UARW  &kp RARW  &none    &none
         &trans  &none      &none      &kp C_PREV  &sk C_NEXT  &kp C_PP    &trans       &none     &kp PGDN  &kp PGUP  &none     &none    &none 
