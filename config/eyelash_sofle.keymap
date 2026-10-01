@@ -15,11 +15,17 @@
 #define LOWER 1
 #define RAISE 2
 #define CONFIG 3
+#define SLOW 4
 
 #define HYP LS(LC(LA(LGUI)))
 #define MEH LC(LA(LGUI))
 #define HYPER(key) LS(LC(LA(LG(key))))
 #define MO_TOG(layer) &mo_tog layer layer
+#define SLOW_ALT &slow_lt SLOW LALT
+#define SC_UP &msc SCRL_UP
+#define SC_DN &msc SCRL_DOWN
+#define SC_LT &msc SCRL_LEFT
+#define SC_RT &msc SCRL_RIGHT
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -52,6 +58,15 @@
         bindings = <&mo>, <&tog>;
       };
 
+      slow_lt: behavior_slow_lt {
+        compatible = "zmk,behavior-hold-tap";
+        label = "slow_lt";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <200>;
+        bindings = <&mo>, <&kp>;
+      };
+
       rshift_caps: tap_dance_0 {
         compatible = "zmk,behavior-tap-dance";
         label = "rshift_caps";
@@ -67,13 +82,6 @@
         if-layers = <LOWER RAISE>;
         then-layer = <CONFIG>;
       };
-    };
-
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-        tap-ms = <100>;
     };
 
     keyboard_brightness_encoder: keyboard_brightness_encoder {
@@ -102,7 +110,7 @@
             &kp TAB     &kp Q      &kp W     &kp E     &kp R     &kp T         &mmv MOVE_DOWN     &kp Y        &kp U      &kp I      &kp O     &kp P      &kp BSLH
             &kp LCTRL   &kp A      &kp S     &kp D     &kp F     &kp G         &mmv MOVE_LEFT     &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT
             &kp LSHFT   &kp Z      &kp X     &kp C     &kp V     &kp B         &mmv MOVE_RIGHT    &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &rshift_caps
-&kp C_MUTE              &kp LCTRL  &kp LALT  &kp LGUI  &mo RAISE &kp SPACE     &mkp LCLK          &mt MEH RET  &mo LOWER  &kp RGUI   &kp RALT  &kp RCTRL
+&kp C_MUTE              &kp LCTRL  SLOW_ALT  &kp LGUI  &mo RAISE &kp SPACE     &mkp LCLK          &mt MEH RET  &mo LOWER  &kp RGUI   &kp RALT  &kp RCTRL
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -115,23 +123,21 @@
          &trans   &kp LT     &kp LBKT   &kp LBRC   &kp LPAR  &kp TILDE    &trans    &kp GRAVE  &kp RPAR   &kp RBRC  &kp RBKT   &kp GT     &kp PIPE
          &trans   &kp MINUS  &kp EQUAL  &kp PLUS   &kp STAR  &kp FSLH     &trans    &kp POUND  &sk RGUI   &sk RALT  &sk RCTRL  &sk RSHFT  &kp DQT
          &trans   &kp EXCL   &kp AT     &kp POUND  &kp DLLR  &kp PRCNT    &trans    &kp CARET  &kp UNDER  &kp AMPS  &kp PIPE   &kp QMARK  &trans
-&trans            &trans     &trans     &trans     &trans    &trans       &trans    &trans     &trans     &trans    &trans     &trans
+&trans            &trans     &trans     &trans     &trans    &trans       &mkp MCLK &trans     &trans     &trans    &trans     &trans
             >;
 
             display-name = "SYM";
-            sensor-bindings = <&scroll_encoder>;
         };
 
         raise_layer {
             bindings = <
-        &none   &kp F1     &kp F2     &kp F3      &kp F4      &kp F5      &trans       &kp F6    &kp F7    &kp F8    &kp F9      &kp F10  &none 
-        &trans  &kp F11    &kp F12    &none       &none       &none       &trans       &none     &kp END   &kp HOME  &kp INSERT  &none    &none
-        &trans  &sk LSHFT  &sk LCTRL  &sk LALT    &sk LGUI    &none       &trans       &kp LARW  &kp DARW  &kp UARW  &kp RARW    &none    &none
-        &trans  &none      &none      &kp C_PREV  &kp C_NEXT  &kp C_PP    &trans       &none     &kp PGDN  &kp PGUP  &kp DELETE  &none    &none 
+        &none   &kp F1     &kp F2     &kp F3      &kp F4      &kp F5      SC_UP        &kp F6    &kp F7    &kp F8    &kp F9      &kp F10  &none 
+        &trans  &kp F11    &kp F12    &none       &none       &none       SC_DN        &none     &kp END   &kp HOME  &kp INSERT  &none    &none
+        &trans  &sk LSHFT  &sk LCTRL  &sk LALT    &sk LGUI    &none       SC_LT        &kp LARW  &kp DARW  &kp UARW  &kp RARW    &none    &none
+        &trans  &none      &none      &kp C_PREV  &kp C_NEXT  &kp C_PP    SC_RT        &none     &kp PGDN  &kp PGUP  &kp DELETE  &none    &none 
 &trans          &trans     &trans     &trans      &trans      &trans      &mkp RCLK    &trans    &trans    &trans    &trans      &trans  
             >;
             display-name = "NAV/FN";
-            sensor-bindings = <&scroll_encoder>;
         };
 
         config_layer {
@@ -144,6 +150,17 @@
             >;
             display-name = "CONFIG";
             sensor-bindings = <&keyboard_brightness_encoder>;
+        };
+
+        slow_layer {
+            bindings = <
+       &trans  &trans  &trans  &trans  &trans  &trans    &mmv MOVE_Y(-400)  &trans  &trans  &trans  &trans  &trans  &trans
+       &trans  &trans  &trans  &trans  &trans  &trans    &mmv MOVE_Y(400)   &trans  &trans  &trans  &trans  &trans  &trans
+       &trans  &trans  &trans  &trans  &trans  &trans    &mmv MOVE_X(-400)  &trans  &trans  &trans  &trans  &trans  &trans
+       &trans  &trans  &trans  &trans  &trans  &trans    &mmv MOVE_X(400)   &trans  &trans  &trans  &trans  &trans  &trans
+&trans         &trans  &trans  &trans  &trans  &trans    &trans             &trans  &trans  &trans  &trans  &trans
+            >;
+            display-name = "SLOW";
         };
 
         extra {
